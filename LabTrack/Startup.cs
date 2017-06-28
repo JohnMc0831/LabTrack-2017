@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using LabTrack.Models;
 
 namespace LabTrack
 {
@@ -29,6 +31,8 @@ namespace LabTrack
         {
             // Add framework services.
             services.AddMvc();
+            var connectionString = @"Server=WEBSQL01;Database=LabTrack;Trusted_Connection=True;";
+            services.AddDbContext<LabTrackContext>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
